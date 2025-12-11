@@ -8,15 +8,6 @@ This comprehensive guide outlines best practices, conventions, and standards for
 
 - **Frontend Framework**: Vite + ReactJS
 - **Language**: TypeScript (strict mode enabled)
-- **State Management**: React Context API + React Query
-- **HTTP Client**: Axios
-- **UI Library**: React 19+ with TypeScript
-- **Styling**: Tailwind CSS with utility-first approach + Shadcn UI + Radix UI
-- **Colors**: Should use Tailwind CSS utility-first classes for colors
-- **Form Handling**: React Hook Form + Zod validation
-- **Data Sanitization**: DOMPurify
-- **Testing**: Jest + React Testing Library
-- **Code Quality**: Ultracite + TypeScript strict mode
 
 ## MUST HAVE
 
