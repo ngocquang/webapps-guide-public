@@ -10,6 +10,13 @@ REPO_BASE_URL="https://raw.githubusercontent.com/ngocquang/webapps-guide-public/
 echo "Starting deployment..."
 echo ""
 
+# Prompt user for LOGIN_DOMAIN
+read -p "Enter LOGIN_DOMAIN (e.g., login.example.com): " LOGIN_DOMAIN_HERE
+if [ -z "$LOGIN_DOMAIN_HERE" ]; then
+  echo "Error: LOGIN_DOMAIN cannot be empty"
+  exit 1
+fi
+
 # Prompt user for BACKEND_DOMAIN
 read -p "Enter BACKEND_DOMAIN (e.g., api.example.com): " BACKEND_DOMAIN_HERE
 if [ -z "$BACKEND_DOMAIN_HERE" ]; then
@@ -61,6 +68,9 @@ echo "✓ BACKEND_DOMAIN_HERE replaced in .env.production"
 # Replace BACKEND_DOMAIN_HERE in AGENTS.md
 sed -i '' "s|BACKEND_DOMAIN_HERE|${BACKEND_DOMAIN_HERE}|g" AGENTS.md
 echo "✓ BACKEND_DOMAIN_HERE replaced in AGENTS.md"
+# Replace LOGIN_DOMAIN_HERE in AGENTS.md
+sed -i '' "s|LOGIN_DOMAIN_HERE|${LOGIN_DOMAIN_HERE}|g" AGENTS.md
+echo "✓ LOGIN_DOMAIN_HERE replaced in AGENTS.md"
 
 # Replace FRONTEND_DOMAIN_HERE in docker-compose.prod.yml
 sed -i '' "s|FRONTEND_DOMAIN_HERE|${FRONTEND_DOMAIN_HERE}|g" docker-compose.prod.yml

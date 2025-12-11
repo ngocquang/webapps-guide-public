@@ -14,7 +14,7 @@ This comprehensive guide outlines best practices, conventions, and standards for
 Do not create API Backend.
 And always create components.
 When user access index page if this cookie is not present, you need redirect to log in using the following URL, replacing `YOUR_CURRENT_URL` with the URL you are currently on:
-<https://BACKEND_DOMAIN_HERE/login/?is_webapps=1&return=YOUR_CURRENT_URL>
+<https://LOGIN_DOMAIN_HERE/login/?is_webapps=1&return=YOUR_CURRENT_URL>
 
 If you got parameter name "token", you should use it and save it as cookie `token_webapps`.
 You should have serve package to run in production mode.
