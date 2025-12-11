@@ -23,7 +23,7 @@ This comprehensive guide outlines best practices, conventions, and standards for
 Do not create API Backend.
 And always create components.
 When user access index page if this cookie is not present, you need redirect to log in using the following URL, replacing `YOUR_CURRENT_URL` with the URL you are currently on:
-<BACKEND_URL_HERE/login/?is_webapps=1&return=YOUR_CURRENT_URL>
+<https://BACKEND_DOMAIN_HERE/login/?is_webapps=1&return=YOUR_CURRENT_URL>
 
 If you got parameter name "token", you should use it and save it as cookie `token_webapps`.
 You should have serve package to run in production mode.
@@ -69,7 +69,7 @@ If you use generate image, Document config here <https://ai.google.dev/gemini-ap
 To generate content using the API, you need to make a POST request to the following endpoint:
 
 ```bash
-curl -X POST "BACKEND_URL_HERE/api/generateContent" \
+curl -X POST "https://BACKEND_DOMAIN_HERE/api/generateContent" \
   -H "Content-Type: application/json" \
   -H "Authorization: Bearer YOUR_JWT_TOKEN" \
   -d '{

@@ -13,14 +13,14 @@ services:
         labels:
           - "traefik.enable=true"
           # HTTPS router configuration
-          - "traefik.http.routers.SERVICE_NAME-image.rule=Host(`FRONTEND_URL_HERE`)"
+          - "traefik.http.routers.SERVICE_NAME-image.rule=Host(`FRONTEND_DOMAIN_HERE`)"
           - "traefik.http.routers.SERVICE_NAME-image.entrypoints=websecure"
           - "traefik.http.routers.SERVICE_NAME-image.tls=true"
           - "traefik.http.routers.SERVICE_NAME-image.tls.certresolver=le"
           - "traefik.http.routers.SERVICE_NAME-image.service=SERVICE_NAME-image"
           - "traefik.http.services.SERVICE_NAME-image.loadbalancer.server.port=3000"
           # HTTP to HTTPS redirect
-          - "traefik.http.routers.SERVICE_NAME-image-http.rule=Host(`FRONTEND_URL_HERE`)"
+          - "traefik.http.routers.SERVICE_NAME-image-http.rule=Host(`FRONTEND_DOMAIN_HERE`)"
           - "traefik.http.routers.SERVICE_NAME-image-http.entrypoints=web"
           - "traefik.http.middlewares.httpsredirect.redirectscheme.scheme=https"
           - "traefik.http.middlewares.httpsredirect.redirectscheme.permanent=true"
