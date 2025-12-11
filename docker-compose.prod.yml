@@ -13,22 +13,22 @@ services:
         labels:
           - "traefik.enable=true"
           # HTTPS router configuration
-          - "traefik.http.routers.remix-image.rule=Host(`FRONTEND_URL_HERE`)"
-          - "traefik.http.routers.remix-image.entrypoints=websecure"
-          - "traefik.http.routers.remix-image.tls=true"
-          - "traefik.http.routers.remix-image.tls.certresolver=le"
-          - "traefik.http.routers.remix-image.service=remix-image"
-          - "traefik.http.services.remix-image.loadbalancer.server.port=3000"
+          - "traefik.http.routers.SERVICE_NAME-image.rule=Host(`FRONTEND_URL_HERE`)"
+          - "traefik.http.routers.SERVICE_NAME-image.entrypoints=websecure"
+          - "traefik.http.routers.SERVICE_NAME-image.tls=true"
+          - "traefik.http.routers.SERVICE_NAME-image.tls.certresolver=le"
+          - "traefik.http.routers.SERVICE_NAME-image.service=SERVICE_NAME-image"
+          - "traefik.http.services.SERVICE_NAME-image.loadbalancer.server.port=3000"
           # HTTP to HTTPS redirect
-          - "traefik.http.routers.remix-image-http.rule=Host(`FRONTEND_URL_HERE`)"
-          - "traefik.http.routers.remix-image-http.entrypoints=web"
+          - "traefik.http.routers.SERVICE_NAME-image-http.rule=Host(`FRONTEND_URL_HERE`)"
+          - "traefik.http.routers.SERVICE_NAME-image-http.entrypoints=web"
           - "traefik.http.middlewares.httpsredirect.redirectscheme.scheme=https"
           - "traefik.http.middlewares.httpsredirect.redirectscheme.permanent=true"
-          - "traefik.http.routers.remix-image-http.middlewares=httpsredirect"
+          - "traefik.http.routers.SERVICE_NAME-image-http.middlewares=httpsredirect"
           # Apply both www redirect and authentication middlewares
           - "traefik.http.middlewares.mywwwredirect.redirectregex.regex=^https://www\\.(.*)"
           - "traefik.http.middlewares.mywwwredirect.redirectregex.replacement=https://$${1}"
-          - "traefik.http.routers.remix-image.middlewares=mywwwredirect"
+          - "traefik.http.routers.SERVICE_NAME-image.middlewares=mywwwredirect"
 
 networks:
   traefik_proxy:
