@@ -1,0 +1,35 @@
+services:
+    web:
+        build:
+          context: .
+          dockerfile: Dockerfile.prod
+        restart: unless-stopped
+        environment:
+            docker: "true"
+        env_file:
+          - .env.production
+        networks:
+            - traefik_proxy
+        labels:
+          - "traefik.enable=true"
+          # HTTPS router configuration
+          - "traefik.http.routers.remix-image.rule=Host(`FRONTEND_URL_HERE`)"
+          - "traefik.http.routers.remix-image.entrypoints=websecure"
+          - "traefik.http.routers.remix-image.tls=true"
+          - "traefik.http.routers.remix-image.tls.certresolver=le"
+          - "traefik.http.routers.remix-image.service=remix-image"
+          - "traefik.http.services.remix-image.loadbalancer.server.port=3000"
+          # HTTP to HTTPS redirect
+          - "traefik.http.routers.remix-image-http.rule=Host(`FRONTEND_URL_HERE`)"
+          - "traefik.http.routers.remix-image-http.entrypoints=web"
+          - "traefik.http.middlewares.httpsredirect.redirectscheme.scheme=https"
+          - "traefik.http.middlewares.httpsredirect.redirectscheme.permanent=true"
+          - "traefik.http.routers.remix-image-http.middlewares=httpsredirect"
+          # Apply both www redirect and authentication middlewares
+          - "traefik.http.middlewares.mywwwredirect.redirectregex.regex=^https://www\\.(.*)"
+          - "traefik.http.middlewares.mywwwredirect.redirectregex.replacement=https://$${1}"
+          - "traefik.http.routers.remix-image.middlewares=mywwwredirect"
+
+networks:
+  traefik_proxy:
+    external: true
