@@ -64,17 +64,19 @@ echo "Replacing placeholders..."
 
 # Replace BACKEND_DOMAIN_HERE in .env.production
 sed -i '' "s|BACKEND_DOMAIN_HERE|${BACKEND_DOMAIN_HERE}|g" .env.production
-echo "✓ BACKEND_DOMAIN_HERE replaced in .env.production"
+# echo "✓ BACKEND_DOMAIN_HERE replaced in .env.production"
 # Replace BACKEND_DOMAIN_HERE in AGENTS.md
 sed -i '' "s|BACKEND_DOMAIN_HERE|${BACKEND_DOMAIN_HERE}|g" AGENTS.md
-echo "✓ BACKEND_DOMAIN_HERE replaced in AGENTS.md"
+# echo "✓ BACKEND_DOMAIN_HERE replaced in AGENTS.md"
 # Replace LOGIN_DOMAIN_HERE in AGENTS.md
 sed -i '' "s|LOGIN_DOMAIN_HERE|${LOGIN_DOMAIN_HERE}|g" AGENTS.md
-echo "✓ LOGIN_DOMAIN_HERE replaced in AGENTS.md"
+# echo "✓ LOGIN_DOMAIN_HERE replaced in AGENTS.md"
 
 # Replace FRONTEND_DOMAIN_HERE in docker-compose.prod.yml
 sed -i '' "s|FRONTEND_DOMAIN_HERE|${FRONTEND_DOMAIN_HERE}|g" docker-compose.prod.yml
 echo "✓ FRONTEND_DOMAIN_HERE replaced in docker-compose.prod.yml"
+sed -i '' "s|FRONTEND_DOMAIN_HERE|${FRONTEND_DOMAIN_HERE}|g" .env.production
+# echo "✓ FRONTEND_DOMAIN_HERE replaced in docker-compose.prod.yml"
 
 # Replace SERVICE_NAME in docker-compose.prod.yml
 sed -i '' "s|SERVICE_NAME|${SERVICE_NAME}|g" docker-compose.prod.yml
